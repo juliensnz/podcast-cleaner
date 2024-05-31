@@ -8,21 +8,23 @@ const generateRssAction = async (previousState: FormDataEntryValue | null, formD
   'use server';
 
   if (!formData.has('url')) {
-    console.log('no url');
     return previousState;
   }
 
   const url = formData.get('url');
   if (!url || url === previousState) {
-    console.log('invalid url');
     return previousState;
   }
 
-  const feed = await parser.parseURL(url as string);
+  try {
+    const feed = await parser.parseURL(url as string);
 
-  console.log(feed.items);
+    console.log(feed.items);
 
-  return url;
+    return url;
+  } catch (error) {
+    return previousState;
+  }
 };
 
 export {generateRssAction};

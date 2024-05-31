@@ -1,0 +1,11 @@
+.urlInput {
+  width: 80vw;
+  max-width: 800px;
+  height: 50px;
+  display: inline-block;
+  padding: 0 20px;
+  font-size: 1.2rem;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  border-radius: 20px;
+}
