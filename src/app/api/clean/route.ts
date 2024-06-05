@@ -32,15 +32,15 @@ const getThreshold = (durations: number[]) => {
   return mean + 2 * stdDev;
 };
 
-const pad = (value: number): string => value.toString().padStart(2, '0');
+// const pad = (value: number): string => value.toString().padStart(2, '0');
 
-const formatTime = (seconds: number) => {
-  const hours = Math.floor(seconds / 3600);
-  const minutes = Math.floor((seconds % 3600) / 60);
-  const remainingSeconds = seconds % 60;
+// const formatTime = (seconds: number) => {
+//   const hours = Math.floor(seconds / 3600);
+//   const minutes = Math.floor((seconds % 3600) / 60);
+//   const remainingSeconds = seconds % 60;
 
-  return `${pad(hours)}:${pad(minutes)}:${pad(remainingSeconds)}`;
-};
+//   return `${pad(hours)}:${pad(minutes)}:${pad(remainingSeconds)}`;
+// };
 
 const parseDuration = (duration: string): number => {
   const regex = /((?<hours>\d\d):)*(?<minutes>\d\d):(?<seconds>\d\d)/;

@@ -1,3 +1,6 @@
+import {RuntimeError} from './error/RuntimeError';
+import {Either, Result} from './result';
+
 type UUID = string;
 
 const isBoolean = (value: unknown): value is boolean => typeof value === 'boolean';
@@ -93,6 +96,20 @@ const omit = <ObjectType extends Record<string, unknown>, KeyType extends (keyof
     ObjectType,
     KeyType[number]
   >;
+
+const parseJSON = <T>(json: string): Either<T, RuntimeError> => {
+  try {
+    return Result.Ok(JSON.parse(json));
+  } catch (error) {
+    return Result.fromNativeError(error, {
+      type: 'parse_json',
+      message: 'Unable to parse JSON',
+      payload: {
+        data: json,
+      },
+    });
+  }
+};
 
 const arrayUnique = <T = unknown>(...arrays: T[][]): T[] => [...new Set([...arrays.flat()])];
 
@@ -197,6 +214,7 @@ export {
   ONE_SECOND,
   ONE_WEEK,
   orderObjectProperties,
+  parseJSON,
   pick,
   upperCamelize,
   waitFor,
